@@ -1,0 +1,11 @@
+
+
+CREATE KEYSPACE roster WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1};
+
+CREATE TABLE employees (
+id UUID,
+firstname varchar,
+lastname varchar,
+age int,
+PRIMARY KEY(id)
+);
