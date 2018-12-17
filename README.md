@@ -47,7 +47,7 @@ With the following software and hardware list you can run all code files present
 ### Software and Hardware List
 | Chapter | Software required | OS required |
 | -------- | ------------------------------------ | ----------------------------------- |
-| 1-12 | CURL, Go, Git | Windows, Mac OS X, and Linux (Any) |
+| 1-12 | CURL, Go (preferably v 0.9), Git, Cassandra, Kafka, Redis, and NSQ | Windows, Mac OS X, and Linux (Any) |
 
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](http://www.packtpub.com/sites/default/files/downloads/9781788622592_ColorImages.pdf).
 
