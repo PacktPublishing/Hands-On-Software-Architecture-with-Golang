@@ -17,4 +17,4 @@ kafka-server-start.sh /usr/local/etc/kafka/server.properties
 ```
 
 ### nsq
-To install  and run nsq  please [nsq quick start](https://nsq.io/overview/quick_start.html
+To install  and run nsq  please [nsq quick start](https://nsq.io/overview/quick_start.html)
