@@ -1,3 +1,4 @@
+// Package pigeon is used to demonstrate visibily and scope for packages
 package pigeon
 
 
