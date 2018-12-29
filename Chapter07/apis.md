@@ -1,4 +1,5 @@
-
+## Rest Samples
+### This file documents requests for various resources for hotel_gins.go
 
 #create
 curl -d '{"id":"xyz", "display_name":"HotelXyz", "star_rating":4, "no_rooms": 150}' -H "Content-Type: application/json"  -X POST 127.0.0.1:8080/v1/hotels
