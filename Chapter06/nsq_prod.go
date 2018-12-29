@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/nsqio/go-nsq"
 	"log"
 )
@@ -10,14 +9,14 @@ func main() {
 
 	// Connect
 	pCfg := nsq.NewConfig()
-	producer, err := nsq.NewProducer("127.0.0.1:4160", pCfg)
+	producer, err := nsq.NewProducer("127.0.0.1:4150", pCfg)
 	if err != nil {
 		log.Fatalf("failed creating producer %s", err)
 	}
 
 	// Publish Async
 	destinationTopic := "my_topic"
-	responseChan := make(chan *ProducerTransaction)
+	responseChan := make(chan *nsq.ProducerTransaction)
 	err = producer.PublishAsync(destinationTopic, []byte("a_message"), responseChan, "some_args")
 
 	// Check for status
