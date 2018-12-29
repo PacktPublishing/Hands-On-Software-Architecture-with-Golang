@@ -1,3 +1,4 @@
+// This file demonstrates package visibility along with the pigeon package
 package main
 
 import (

@@ -1,3 +1,4 @@
+// This file demonstrates interfaces in Go
 package main
 
 import (
@@ -79,7 +80,7 @@ func (p *Pigeon) GetName() string {
 }
 
 // The symphony
-
+// makeThemSing demonstraces how client code can work with interfaces and not worry about struct specifics
 func makeThemSing(animals []Animal) {
 	for _, animal := range animals {
 		fmt.Println(animal.GetName() + " says " + animal.Speak())
