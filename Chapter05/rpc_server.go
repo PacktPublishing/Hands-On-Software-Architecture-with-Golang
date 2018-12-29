@@ -1,9 +1,11 @@
-package server
+package main
 
 import (
-	"errors"
+	"log"
 	"net/http"
-	"rpc"
+	"net/rpc"
+	"net"
+
 )
 
 type Args struct {
@@ -12,18 +14,19 @@ type Args struct {
 
 type MuliplyService struct{}
 
-func (t *Arith) Multiply(args *Args, reply *int) error {
+func (t *MuliplyService) Do(args *Args, reply *int) error {
+	log.Println("inside MuliplyService")
 	*reply = args.A * args.B
 	return nil
 }
 
 func main() {
 	service := new(MuliplyService)
-	rpc.Register(MuliplyService)
+	rpc.Register(service)
 	rpc.HandleHTTP()
 	l, e := net.Listen("tcp", ":1234")
 	if e != nil {
 		log.Fatal("listen error:", e)
 	}
-	go http.Serve(l, nil)
+	http.Serve(l, nil)
 }
