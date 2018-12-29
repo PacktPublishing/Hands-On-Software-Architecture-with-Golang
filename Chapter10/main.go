@@ -35,7 +35,7 @@ func init() {
 
 func main() {
 	router := gin.Default()
-	v1 := router.Group("/v1/hotels/reservation")
+	v1 := router.Group("/v1/hotels/Chapter10")
 	{
 		v1.POST("/", createReservation)
 

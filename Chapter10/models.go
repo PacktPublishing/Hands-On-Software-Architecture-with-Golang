@@ -55,7 +55,7 @@ func init() {
 
 }
 
-// generates ID for the reservation from SKU, roomid and checkin date
+// generates ID for the Chapter10 from SKU, roomid and checkin date
 func makeId(res *HotelReservationDTO) string {
 	// NOTE : for uniquess, non-overlapping reservations, there should be another explicit check
 	return fmt.Sprintf("%v#%v#%v", res.SKU, res.RoomId, res.CheckIn)
@@ -74,7 +74,7 @@ func persistReservation(res *HotelReservationDTO) error {
 		return tx.Error
 	}
 
-	//TODO : Check that there is no overlapping reservation
+	//TODO : Check that there is no overlapping Chapter10
 
 	if err := tx.Create(&HotelReservation{
 		CustomerId:        res.CustomerId,
@@ -89,7 +89,7 @@ func persistReservation(res *HotelReservationDTO) error {
 		return err
 	}
 
-	fmt.Println("created hotel reservation..")
+	fmt.Println("created hotel Chapter10..")
 
 	// update the entry for availability threshold
 	var threshold AvailabilityThreshold
@@ -99,8 +99,8 @@ func persistReservation(res *HotelReservationDTO) error {
 	tx.Model(&threshold).Where("id = ?", threshold.ID).Update("availability", threshold.Availability-1)
 
 	// NOTE : availability is just a threshold for update here.
-	// Even if availability is 0, reservation is forwarded to the Seller
-	// And availability >0 in thresholds DB is not a guarantee of reservation certainity.
+	// Even if availability is 0, Chapter10 is forwarded to the Seller
+	// And availability >0 in thresholds DB is not a guarantee of Chapter10 certainity.
 	if threshold.Availability <= 1 {
 		// we have reached threshold
 		sendInvaliationMessageToPriceStore(threshold.SKU, threshold.RoomId)
