@@ -3,6 +3,9 @@ package main
 import (
 	"github.com/nsqio/go-nsq"
 	"log"
+	"os"
+	"os/signal"
+	"syscall"
 )
 
 type MyMessageHandler struct {

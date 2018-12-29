@@ -1,3 +1,14 @@
+package main
+
+import (
+	"github.com/nsqio/go-nsq"
+	"log"
+	"os"
+	"os/signal"
+	"syscall"
+)
+
+var delegateChannel chan *nsq.Message
 
 type MyMessageHandler struct {}
 
@@ -34,4 +45,9 @@ cons.AddConcurrentHandlers(&MyMessageHandler{}, 20)
 err := cons.ConnectToNSQD(nsqdAddr)
 if err != nil {
     log.Fatalf(err.Error())
+}
+
+func doSomeWork(m *nsq.Message)  error {
+	// some long winded tasks
+	return nil
 }
