@@ -36,7 +36,7 @@ func (v ConcreteVisitor) Visit(node Node) {
     // this is one way of checking the concrete node type
 	switch node.(type) {
 	case ConcreteNodeX:
-		fmt.Println("on Node ")
+		fmt.Println("on Node X")
 	case ConcreteNodeY:
 		fmt.Println("on Node Y")
 	}

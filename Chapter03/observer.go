@@ -6,7 +6,6 @@ import (
 )
 
 // The Subject
-
 type Subject struct {
 	observers []Observer
 	state string
@@ -28,14 +27,12 @@ func (s *Subject) GetState()  string {
 	return s.state 
 }
 
-// The Observer Inteface
-
+// The Observer Interface
 type Observer interface {
 	Update()
 }
 
 // Concrete Observer A
-
 type ConcreteObserverA struct {
 	model *Subject
 	viewState string

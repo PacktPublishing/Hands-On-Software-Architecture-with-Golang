@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
-	"time"
-	"math"
 )
 
+// InterfaceX is the component interface
 type InterfaceX interface {
 	MethodA()
 	AddChild(InterfaceX)
@@ -21,6 +20,7 @@ func (c *Composite) MethodA() {
 		return
 	}
 
+	// if there are children then the component is a composite
 	fmt.Println("I'm a composite ")
 	for _, child := range c.children {
 		child.MethodA()
@@ -32,23 +32,7 @@ func (c *Composite) AddChild(child InterfaceX) {
 }
 
 
-type Function func(float64) float64
 
-func ProfileDecorator(fn Function) Function {
-	return func(params float64) float64 {
-		start := time.Now()
-		result := fn(params)
-		elapsed := time.Now().Sub(start)
-		fmt.Println("Funtion completed with time : ", elapsed)
-
-        return result
-	}
-}
-
-
-func SquareRoot(n float64) float64 {
-    return math.Sqrt(n)
-}
 
 func main() {
 	var parent InterfaceX 
@@ -60,7 +44,5 @@ func main() {
 	parent.AddChild(&child)
 	parent.MethodA() // one composite, one  leaf
 
-	decoratedSqaureRoot := ProfileDecorator(SquareRoot)
-	fmt.Println(decoratedSqaureRoot(16))
 
 }

@@ -5,14 +5,15 @@ import (
 	"errors"
 )
 
-// The Command 
+// The Command -  encapsulates the action to be done
 type Report interface {
-	Execute()
+	Execute() // here the action is called Execute
 }
 
 
 // The Concrete Commands
 type ConcreteReportA struct {
+	// The action needs to be done on this receiver object
 	receiver *Receiver
 }
 
@@ -27,16 +28,18 @@ type ConcreteReportB struct {
 func (c *ConcreteReportB) Execute() {
 	c.receiver.Action("ReportB")
 }
+// end of concrete commands
 
-
-// Receiver
+// Receiver - ancillary objects passed to command execution
+// This can pass useful information for
 type Receiver struct{}
 
 func (r *Receiver) Action(msg string) {
 	fmt.Println(msg)
 }
 
-// Invoker
+// Invoker - this object which knows how to execute a command, and optionally
+// does bookkeeping about the command execution.
 type Invoker struct {
 	repository []Report
 }
@@ -52,8 +55,8 @@ func (i *Invoker) Run() {
 }
 
 
-///////////////////////////////////////////////
 // Chain Of Responsibilty
+// uses Command to represent requests as objects
 
 type ChainedReceiver struct {
 	canHandle string 
@@ -84,10 +87,10 @@ func (r *ChainedReceiver) Handle(what string) error {
 }
 
 
-
+// The code below demonstrates usage of the design pattern
+//
 
 func main() {
-
 	receiver := new(Receiver)
 	ReportA := &ConcreteReportA{receiver}
 	ReportB := &ConcreteReportB{receiver}
@@ -96,8 +99,5 @@ func main() {
 	invoker.Run()
 	invoker.Schedule(ReportB)
 	invoker.Run()
-
-
-
 
 }
